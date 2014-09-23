@@ -1,17 +1,17 @@
 {
   "name": "response-streams",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Helps write json'ed objects containing streams into nodejs http response object.",
-  "main": "index.js",
+  "main": "lib/response-streams.js",
   "scripts": {
-    "test": "jasmine test"
+    "test": "jasmine-node test"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/rmdm/response-streams"
   },
   "keywords": [
-    "stream",    
+    "stream",
     "response",
     "http",
     "express"
@@ -21,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/rmdm/response-streams/issues"
   },
-  "homepage": "https://github.com/rmdm/response-streams"
+  "homepage": "https://github.com/rmdm/response-streams",
+  "devDependencies": {
+    "through2": "^0.6.2"
+  }
 }
