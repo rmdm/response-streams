@@ -7,7 +7,7 @@ Compatible with **Streams2** & **3**. An object treated as Readable stream using
 
 #Usage
 Module exposes a function wich takes two args: writable non-object stream and an object to write.
-```
+```javascript
 var stream = require('response-streams');
 ...
 stream(dest, obj);
@@ -20,21 +20,21 @@ Generated and written into `dest` stream data represents valid JSON except for t
 * instead of an object a primitive was passed;
 * non-object stream was passed.
 
-Independet of level at which stream is placed, **object stream turns into array** consisting of objects from that stream whereas **non-object stream turns into string** consisting of its chunks.
+Independently of level at which stream is placed, **object stream turns into array** consisting of objects from that stream whereas **non-object stream turns into string** consisting of its chunks.
 
 #Backpressure
 Module respects backpressure.
 
 #Example
 Lets say we have writable destination stream and two readable streams: one in object mode and other not:
-```
+```javascript
 var dest = ...;
 
 var objStream = ...;
 var nonObjStream = ...;
 ```
 We also have written some data into them:
-```
+```javascript
 objStream.write({a: 'b'});
 objStream.write({c: 'd'});
 objStream.end();
@@ -45,15 +45,15 @@ nonObjStream.write('z');
 nonObjStream.end();
 ```
 ###top-level streams
-```
+```javascript
 stream(dest, nonObjStream); // '"xyz"' in dest
 ```
 or
-```
+```javascript
 stream(dest, objStream); // [{"a":"b"},{"c":"d"}] in dest
 ```
 ###deep nesting
-```
+```javascript
 var obj = {
   arr: [[], [1,2,3], [[nonObjStream]]],
   obj: {
@@ -68,7 +68,7 @@ var obj = {
 stream(dest, obj);
 ```
 In `dest` we get:
-```
+```javascript
 {
   "arr": [[],[1,2,3],[["xyz"]]],
   "obj": {
