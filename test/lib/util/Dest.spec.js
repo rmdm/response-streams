@@ -28,7 +28,7 @@ describe('Dest class', function () {
   describe('addStream method', function () {
     
     it('setups passed stream if it is first passed stream', function () {
-      dest.addStream({on: function () {}, _readableState: {}});
+      dest.addStream({on: function () {}, _readableState: {}, pipe: function () {}});
       expect(dest.setupStream).toHaveBeenCalled();
     });
     
@@ -54,12 +54,23 @@ describe('Dest class', function () {
     it('registers listeners on "readable" and "end" events', function () {
       var stream = {
         _readableState: {},
-        on: function () {}
+        on: function () {},
+        pipe: function () {}
+      };
+      var objStream = {
+        _readableState: {objectMode: true},
+        on: function () {},
+        pipe: function () {}
       };
       spyOn(stream, 'on');
+      spyOn(objStream, 'on');
       dest.setupStream(stream);
-      expect(stream.on).toHaveBeenCalledWith('readable', jasmine.any(Function));
+      expect(stream.on).not.toHaveBeenCalledWith('readable', jasmine.any(Function));
       expect(stream.on).toHaveBeenCalledWith('end', jasmine.any(Function));
+      
+      dest.setupStream(objStream);
+      expect(objStream.on).toHaveBeenCalledWith('readable', jasmine.any(Function));
+      expect(objStream.on).toHaveBeenCalledWith('end', jasmine.any(Function));
     });
     
     it('just writes elements from plain chunks buffer, when no stream is passed', function () {
@@ -75,7 +86,7 @@ describe('Dest class', function () {
     it('setups next stream from streams queue and writes elements from plain chunks buffer', function () {
       dest.streamed = false;
       dest.plainChunks = ['a', 'b'];
-      dest.addStream({_readableState: {}, on: function () {}});      
+      dest.addStream({_readableState: {}, on: function () {}, pipe: function () {}});      
       expect(dest.setupStream).not.toHaveBeenCalled();
       expect(dest.streams.length).toBe(1);
       dest.next();
