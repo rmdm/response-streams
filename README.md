@@ -5,6 +5,11 @@ Helps to write streams-containing object into non-object stream. The streams pac
 #Compatibility
 Compatible with **Streams2** & **3**. An object treated as Readable stream using duck type checking. That means you can freely use third-party modules such as [*readable-stream*](https://github.com/isaacs/readable-stream).
 
+#Installation
+```
+npm install response-streams
+```
+
 #Usage
 Module exposes a function wich takes two args: writable non-object stream and an object to write.
 ```javascript
