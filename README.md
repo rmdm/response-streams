@@ -5,6 +5,8 @@ Helps to write streams-containing object into non-object stream. The streams pac
 #Compatibility
 Compatible with **Streams2** & **3**. An object treated as Readable stream using duck type checking. That means you can freely use third-party modules such as [*readable-stream*](https://github.com/isaacs/readable-stream).
 
+For older streams (such as *mongoose* offers) you can pipe them into newer (likely passing through) streams.
+
 #Installation
 ```
 npm install response-streams
