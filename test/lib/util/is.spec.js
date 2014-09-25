@@ -22,6 +22,7 @@ describe('is module', function () {
       };
       expect(is.stream(asStream)).toBe(true);
       expect(is.stream([])).toBe(false);
+      expect(is.stream(null)).toBe(false);
     });
     
   });
