@@ -1,6 +1,6 @@
 {
   "name": "response-streams",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Helps to write streams-containing object into non-object stream. For example, http response stream.",
   "main": "lib/response-streams.js",
   "scripts": {
