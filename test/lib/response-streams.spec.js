@@ -79,4 +79,18 @@ describe('response-stream module', function () {
     expect(str).toBe('5');
   });
   
+  it('returns passed stream', function () {
+    expect(stream(dest, 'whatever')).toBe(dest);
+  });
+  
+  it('returns passing through stream that stream passed argument', function () {
+    runs(function () {
+      stream({some: 'object'}).pipe(dest);
+    });
+    
+    waitsFor(function () {
+      return str === '{"some":"object"}';
+    }, 'should end up with some object', 100);
+  });
+  
 });

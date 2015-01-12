@@ -1,6 +1,6 @@
 {
   "name": "response-streams",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Helps to write streams-containing object into non-object stream. For example, http response stream.",
   "main": "lib/response-streams.js",
   "scripts": {
@@ -27,5 +27,8 @@
     "istanbul": "^0.3.2",
     "jasmine-node": "git://github.com/mhevery/jasmine-node",
     "through2": "^0.6.2"
+  },
+  "dependencies": {
+    "readable-stream": "~1.0.0"
   }
 }
